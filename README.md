@@ -2,6 +2,7 @@
 (일상 자바스크립트)
 
 ## You Don't Know JS Yet 
+>  - [test](src/You-Dont-Know-JS/test.ipynb)
 <details>
 <summary> 1회 빠르게 읽기 기록</summary>
 <div markdown="1">
