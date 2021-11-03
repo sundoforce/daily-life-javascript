@@ -49,8 +49,9 @@
 </div>
 </details>
 
-## JavaScript Algorithms
-
+## Problem Solving 
+* JavaScript Algorithms
+* Problem Solving 
 
 ## Gaol Projects
 * Muzia(Front-end) to JavaScript
