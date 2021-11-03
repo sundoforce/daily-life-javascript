@@ -23,6 +23,7 @@
 </div>
 </details>
 
+### Summary 
 <details>
 <summary>PART I - 타입과 문법</summary>
 <div markdown="1">
