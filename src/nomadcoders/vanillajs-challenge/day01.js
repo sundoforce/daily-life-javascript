@@ -1,36 +1,45 @@
-// vanilla-js-challenge 1-day
-
-
-
-
-let toDoss = [];
-
-const toDoFrom = document.getElementById('test');
-
-// toDoFrom.addEventlis
-
-JSON.stringify(toDoFrom);
-
-JSON.stringify([1, 2, 3 , 4]);
-
-JSON.parse("[1, 2, 3, 4, 5]");
-
 const TODOS_KEY = "todos";
 
+let toDos = [];
 
-const hello = [1, 2,3, 4, 5];
-
-hello.forEach((i) =>console.log(i));
-
-const test = localStorage.getItem("test");
-
-function paintToDo(item) {
-
+function saveToDos() {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
-if(test) {
-    const parseTodos = JSON.parse(test);
-    toDos = parseTodos;
-    parseTodos.forEach(paintToDo);
+function deleteToDo(evnet) {
+    const li = evnet.target.parentElement;
+    console.log(li.id);
+    li.remove();
+}
+
+function paintToDo(newToDo) {
+    const li = document.createElement("li");
+    li.id = newToDo.id;
+    const span = document.createElement("span");
+    span.innerText = newToDo.text;
+    const button = document.createElement("button");
+    button.innerText ="X";
+    button.addEventListener("click", deleteToDo);
+
+
+    event.prevetDefault();
+    const newTodo = toDoInput.value;
+    toDoInput.value = "";
+    const newToDoObj = {
+        text: newTodo,
+        id: Date.now(),
+    };
+
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj);
+    saveToDos();
+}
+
+
+if(saveToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos);
+    toDos = parsedToDos;
+
+    parsedToDos.forEach(paintToDo);
 }
 
