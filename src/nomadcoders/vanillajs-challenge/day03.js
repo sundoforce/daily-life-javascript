@@ -1,5 +1,9 @@
 
 /*
+
+https://codesandbox.io/s/day-three-blueprint-forked-pk9r2
+
+
 ✅ The text of the title should change when the mouse is on top of it.
 마우스가 title위로 올라가면 텍스트가 변경되어야 합니다.
 
@@ -49,3 +53,21 @@ title.addEventListener("mouseleave", superEventHandler.handleMouseLeave);
 window.addEventListener("resize", superEventHandler.handleWindowResize)
 title.addEventListener("mousedown", superEventHandler.handleMouseRightClick)
 document.addEventListener("mousedown", superEventHandler.handleMouseRightClick);
+
+/*
+https://developer.mozilla.org/ko/docs/Web/Events
+
+https://developer.mozilla.org/ko/docs/Web/API/Window
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
+
+https://developer.mozilla.org/ko/docs/Web/API/Window/resize_event
+
+ */
+
+// 우 클릭
+// title.addEventListener("contextmenu",);
