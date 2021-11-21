@@ -1,5 +1,6 @@
 let sendFamily = false;
-const NATIVE_DEVICE_PUSH_TOKEN = "eeRtE5xVRWyI633MLqrAwN:APA91bFGzJFl9N73TCjTWwZdaKwIJ6sLw9zIVIgsjg1WWzeLgye89k-rmiqcwqsGifK4-k5ad72Y-tQOOVYZtya7_ZLc396jSSUvXvMxIYnkrxGdvapXQwxye3o9EYoFZ7oEpyP3m_MJ";
+const NATIVE_DEVICE_PUSH_TOKEN = ""
+const serverKey = ''
 
 const superEventHandler = {
     handleImageClick: function () {
@@ -9,36 +10,35 @@ const superEventHandler = {
 };
 
 function firebaseNotification() {
-    fetch('https://fcm.googleapis.com/fcm/send', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+    var  body = {
+        to: NATIVE_DEVICE_PUSH_TOKEN,
+        notification: {
+                title: "마이렌 - 가족 사고위치 알림",
+                body: '사고위치: 대전 유성구 덕명동  \n' +
+                    '[지도보기]',
+                // sound: "default",
+                // priority: "high",
+                // show_in_foreground: true,
+                // targetScreen: "detail"
 
         },
-        body: JSON.stringify({
-            priority: 'normal',
-            notification: {
-                // experienceId: '@yourExpoUsername/yourProjectSlug',
-                title: "\uD83D\uDCE7 You've got mail",
-                body: 'Hello world! \uD83C\uDF10',
-            },
-        }),
-    }).then((res) => {
-        if(!res.ok) {
-            throw new Error('400 , 500')
+        priority: "high",
+    }
+
+    axios({
+        method: 'post', //you can set what request you want to be
+        url: 'https://fcm.googleapis.com/fcm/send',
+        data: body,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "key=" + serverKey
         }
+    }).then((res)=>{
         console.log(res)
-    }).then((r) => {
-        console.log(r);
-    }).catch(() => {
-        console.log("rrr");
-    });
-
-
+    }).catch((e)=>{
+        console.log(e)
+    })
 }
 
 const image = document.querySelector("img");
-
 image.addEventListener("click", superEventHandler.handleImageClick);
