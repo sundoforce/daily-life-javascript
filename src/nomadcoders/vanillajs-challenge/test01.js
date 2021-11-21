@@ -1,4 +1,5 @@
 let sendFamily = false;
+const NATIVE_DEVICE_PUSH_TOKEN = "eeRtE5xVRWyI633MLqrAwN:APA91bFGzJFl9N73TCjTWwZdaKwIJ6sLw9zIVIgsjg1WWzeLgye89k-rmiqcwqsGifK4-k5ad72Y-tQOOVYZtya7_ZLc396jSSUvXvMxIYnkrxGdvapXQwxye3o9EYoFZ7oEpyP3m_MJ";
 
 const superEventHandler = {
     handleImageClick: function () {
@@ -7,85 +8,35 @@ const superEventHandler = {
     },
 };
 
-function pushSend() {
-    // 푸시 발송
-    const notification = {
-        'title': '마이렌 - 가족 사고위치 알림',
-        'body': '사고위치: 대전 유성구 덕명동  \n' +
-            '[지도보기]',
-        // 'icon': '아이콘',
-        // 'click_action': 'url'
-    };
-
-    const options =
-        {
-            "notification": {
-                "title": "CWMS",
-                "body": "from google apps scritpt",
-                "click_action": "site",
-                "icon": "http://url-to-an-icon/icon.png"
-            },
-            "to": "key"
-        };
-
+function firebaseNotification() {
     fetch('https://fcm.googleapis.com/fcm/send', {
-        'method': 'POST',
-        'mode': 'no-cors',
-        'headers': {
-            'Authorization': `key=${key}`,
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
+
         },
-        'body': {
-            'notification': notification,
-            'to': to,
-            'priority': 'high',
+        body: JSON.stringify({
+            priority: 'normal',
+            notification: {
+                // experienceId: '@yourExpoUsername/yourProjectSlug',
+                title: "\uD83D\uDCE7 You've got mail",
+                body: 'Hello world! \uD83C\uDF10',
+            },
+        }),
+    }).then((res) => {
+        if(!res.ok) {
+            throw new Error('400 , 500')
         }
-    }).then(function (response) {
-        console.log('fetch success');
-        console.log(response);
-    }).catch(function (error) {
-        console.error(error);
-        alert('fetch error');
+        console.log(res)
+    }).then((r) => {
+        console.log(r);
+    }).catch(() => {
+        console.log("rrr");
     });
-}
-
-function firebaseNotification() {
-    var headers = {
-        "Authorization" : key,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-    };
-
-    // Modified
-    var payload = {
-        "notification": {
-            "title": "CWMS",
-            "body": "from google apps scritpt",
-            // "click_action": "site",
-            // "icon": "http://url-to-an-icon/icon.png"
-        },
-        "to": to,
-        'priority': 'high',
-    };
-
-    // Modified
-    var options = {
-        method: "POST",
-        mode: 'no-cors',
-        contentType: "application/json",
-        headers: headers,
-        payload: JSON.stringify(payload) // <--- Modified
-    }
 
 
-    fetch('https://fcm.googleapis.com/fcm/send',options).then(function (response) {
-        console.log('fetch success');
-        console.log(response);
-    }).catch(function (error) {
-        console.error(error);
-        alert('fetch error');
-    });
 }
 
 const image = document.querySelector("img");
