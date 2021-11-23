@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vanilla Challenge</title>
+    <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
 </head>
 
 <body>
-<h1>Hello!</h1>
+<h1>Random Number Game</h1>
+<form class="js-form">
+    <h2 class="js-rangeText">Generate a number between 0 and
+        <input type="number" min="0" class="js-range" value="0"/>
+    </h2>
+    <br />
+    <span>Guess the number : </span>
+    <input type="number" class="js-input" />
+    <button type="submit">Play!</button>
+</form>
+<h4 class="js-choose"></h4>
+<h3 class="js-result"></h3>
 <script src="day05.js"></script>
 </body>
 </html>
